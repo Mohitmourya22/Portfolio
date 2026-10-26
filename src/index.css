@@ -1,0 +1,123 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #ffffff;
+  --card: #faf8ff;
+  --fg: #1e1b2e;
+  --muted: #5b5675;
+  --pu: #6d28d9;
+  --gold: #6d28d9;
+  --on: #ffffff;
+}
+
+.dark {
+  --bg: #0a0a0a;
+  --card: #141414;
+  --fg: #f5f1e6;
+  --muted: #a8a08c;
+  --pu: #d4af37;
+  --gold: #d4af37;
+  --on: #0a0a0a;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-pu: var(--pu);
+  --color-gold: var(--gold);
+}
+
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+section {
+  scroll-margin-top: 5rem;
+}
+
+.grad {
+  color: var(--gold);
+}
+
+.glass {
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--pu) 25%, transparent);
+  border-radius: 1rem;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--pu);
+  box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--pu) 45%, transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-p {
+  background: var(--pu);
+  color: var(--on);
+}
+
+.btn-p:hover {
+  filter: brightness(1.1);
+}
+
+.btn-o {
+  border: 1.5px solid var(--pu);
+  color: var(--fg);
+}
+
+@media (max-width: 380px) {
+  .btn {
+    padding-inline: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
