@@ -22,13 +22,15 @@ const Avatar = () => (
     <path d="M178 228 L200 290 L222 228 Z" fill="#f4f4f4" />
     <path d="M200 232 L200 318" stroke="#2a527f" strokeWidth="3" />
     <rect x="140" y="262" width="28" height="24" rx="3" fill="none" stroke="#2a527f" strokeWidth="2.5" /><rect x="232" y="262" width="28" height="24" rx="3" fill="none" stroke="#2a527f" strokeWidth="2.5" />
-    <rect x="182" y="196" width="36" height="36" rx="14" fill="#d4996c" />
-    <circle cx="200" cy="168" r="42" fill="#e0a87c" /><circle cx="158" cy="172" r="7" fill="#d4996c" /><circle cx="242" cy="172" r="7" fill="#d4996c" />
-    <path d="M160 176 C164 214 236 214 240 176 C230 196 170 196 160 176Z" fill="#2a1d18" opacity=".28" />
-    <path d="M156 168 C146 120 176 100 206 100 C240 100 256 130 244 168 C240 150 226 140 200 142 C176 140 160 150 156 168Z" fill="#14101c" />
-    <path d="M160 130 C172 90 232 84 250 122 C228 108 188 110 160 130Z" fill="#14101c" />
-    <circle cx="184" cy="170" r="4" fill="#14101c" /><circle cx="216" cy="170" r="4" fill="#14101c" />
-    <path d="M190 192 Q200 198 210 192" stroke="#7a3f2c" strokeWidth="3" fill="none" strokeLinecap="round" />
+    <rect x="182" y="196" width="36" height="36" rx="14" fill="#bf805f" />
+    <path d="M158 151 C158 125 177 112 201 112 C226 112 242 128 242 153 L239 177 C236 204 219 218 200 218 C181 218 164 203 161 178 Z" fill="#d49a78" stroke="#a96f54" strokeWidth="2" />
+    <path d="M157 164 C147 133 157 105 183 94 C208 82 237 96 246 119 C252 136 247 153 242 164 C239 145 228 134 213 130 C194 135 176 128 165 118 C163 137 164 151 157 164Z" fill="#17151b" />
+    <path d="M163 119 C173 93 196 84 219 91 C231 95 241 104 246 117 C225 108 205 109 191 119 C180 127 171 136 163 145 C159 136 160 126 163 119Z" fill="#211e27" />
+    <path d="M178 157 Q187 151 195 157" stroke="#392820" strokeWidth="3" fill="none" strokeLinecap="round" /><path d="M206 157 Q215 151 223 157" stroke="#392820" strokeWidth="3" fill="none" strokeLinecap="round" />
+    <ellipse cx="187" cy="165" rx="3.5" ry="4" fill="#201a19" /><ellipse cx="215" cy="165" rx="3.5" ry="4" fill="#201a19" />
+    <path d="M201 166 Q198 179 202 182" stroke="#ae7255" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+    <path d="M191 202 Q200 206 209 202" stroke="#874e43" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+    <path d="M165 190 C171 211 184 222 200 222 C216 222 230 211 236 190 C234 216 218 230 200 230 C182 230 167 216 165 190Z" fill="#b8795b" opacity=".45" />
     <rect x="130" y="296" width="140" height="22" rx="8" fill="#222" className="stroke-pu" strokeWidth="2" />
     <ellipse cx="146" cy="296" rx="22" ry="12" fill="#e0a87c" /><ellipse cx="254" cy="296" rx="22" ry="12" fill="#e0a87c" />
     <rect x="320" y="284" width="30" height="34" rx="6" className="fill-pu" /><path d="M350 292h10a8 8 0 010 16h-10" className="stroke-pu" strokeWidth="4" fill="none" />

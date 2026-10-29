@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+.font-handwritten {
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+}
+
 :root {
   --bg: #ffffff;
   --card: #faf8ff;

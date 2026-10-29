@@ -2,9 +2,10 @@ export const links = {
   linkedin: "https://www.linkedin.com/in/mohit-kumar-mourya-708b7429a",
   github: "https://github.com/Mohitmourya22",
   gfg: "https://www.geeksforgeeks.org/profile/csemohitzf09",
+  whatsapp: "https://wa.me/919669418118",
+  email: "mailto:csemohitmourya@gmail.com",
 };
-export const nav = ["About", "Skills", "Academics", "Projects", "Certifications", "Achievements", "Experience", "Contact"];
-export const highlights = ["GFG Campus Mantri 2026", "Red Ribbon Club Lead", "Hackathons"];
+export const nav = ["About", "Skills", "Academics", "Projects", "Certifications", "Activities", "Achievements", "Experience", "Contact"];
 export const skills = {
   Languages: ["C++", "Java", "JavaScript", "Python", "HTML5/CSS3"],
   Frontend: ["React.js", "Next.js", "Tailwind CSS", "Clerk"],

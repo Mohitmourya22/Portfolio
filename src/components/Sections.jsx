@@ -1,25 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUp, Code2, Trophy, ExternalLink, Github, Linkedin, Send, X, ZoomIn } from "lucide-react";
+import { ArrowUp, Code2, Trophy, ExternalLink, Github, Linkedin, Send, X, ZoomIn, ImagePlus, MessageCircle, Mail, GraduationCap, Laptop, Rocket } from "lucide-react";
 import { Reveal, Section } from "./ui";
-import { achievements, experience, highlights, links, skills } from "../data/siteData";
+import { achievements, experience, links, skills } from "../data/siteData";
 import { projects } from "../data/projectsData";
 import { certifications } from "../data/certificationsData";
+import { extracurricularActivities } from "../data/extracurricularData";
 
 export const About = () => (
-  <Section id="about" title="About Me" sub="Learning, building and leading.">
+  <Section id="about" title="About Me">
     <div className="grid items-center gap-8 md:grid-cols-2">
-      <Reveal>
-        <p className="leading-relaxed text-muted">
-          I&apos;m a final-year Computer Science &amp; Engineering student at <b className="text-fg">GEC Bilaspur</b> who loves turning ideas into
-          full-stack products and AI/ML solutions. Beyond code, I take part in hackathons and lead community initiatives on campus.
-        </p>
+      <Reveal className="mx-auto w-full max-w-md">
+        <div className="relative">
+          <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-pu/40 to-gold/30 blur-2xl" aria-hidden="true" />
+          <div className="glass relative overflow-hidden rounded-2xl border border-pu/30 p-2 shadow-xl shadow-pu/10">
+            <img src="/profile.png" alt="Mohit Kumar Mourya" loading="lazy" className="aspect-square w-full rounded-xl object-cover object-[center_35%]" />
+          </div>
+        </div>
       </Reveal>
-      <div className="grid grid-cols-2 gap-4">
-        {highlights.map((h, i) => (
-          <Reveal key={h} d={i * 0.08}><div className="card p-5 text-center font-semibold"><span className="grad">{h}</span></div></Reveal>
-        ))}
-      </div>
+      <Reveal>
+        <article className="card group relative isolate overflow-hidden p-6 shadow-xl shadow-pu/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-pu/15 sm:p-8 lg:p-9">
+          <div className="pointer-events-none absolute -right-20 -top-24 -z-10 h-56 w-56 rounded-full bg-gradient-to-br from-pu/20 to-gold/20 blur-3xl transition duration-500 group-hover:scale-125" aria-hidden="true" />
+          <div className="mb-5 h-1 w-16 rounded-full bg-gradient-to-r from-pu to-gold sm:mb-6" aria-hidden="true" />
+          <p className="text-base leading-8 text-muted sm:text-lg sm:leading-9">
+            I&apos;m a final-year Computer Science &amp; Engineering student at <span className="font-semibold text-fg">GEC Bilaspur</span> who loves turning ideas into{" "}
+            <span className="font-handwritten text-2xl font-semibold text-gold sm:text-3xl">full-stack products</span> and{" "}
+            <span className="font-handwritten text-2xl font-semibold text-gold sm:text-3xl">AI/ML solutions</span>. Beyond code, I take part in hackathons and lead{" "}
+            <span className="font-handwritten text-2xl font-semibold text-gold sm:text-3xl">community initiatives</span> on campus.
+          </p>
+          <ul className="mt-6 grid gap-2.5 sm:mt-7 sm:grid-cols-2" aria-label="Quick highlights">
+            {[
+              { Icon: GraduationCap, label: "CS Student @ GEC Bilaspur" },
+              { Icon: Laptop, label: "Full-Stack & AI/ML Developer" },
+              { Icon: Rocket, label: "Hackathon Participant & Campus Leader" },
+            ].map(({ Icon, label }) => (
+              <li key={label} className="flex min-w-0 items-center gap-2.5 rounded-xl border border-pu/20 bg-pu/5 px-3 py-2.5 text-sm font-medium leading-snug text-fg transition duration-200 hover:border-pu/50 hover:bg-pu/10 focus-within:border-pu/50 sm:px-3.5">
+                <Icon size={18} className="shrink-0 text-gold" aria-hidden="true" />
+                <span>{label}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-7 border-t border-pu/20 pt-5 text-right sm:mt-8 sm:pt-6">
+            <p className="font-handwritten text-2xl leading-tight text-gold sm:text-3xl">“Stay curious. Build with purpose.”</p>
+            <p className="mt-1 text-xs font-semibold tracking-wide text-muted">— Mohit Kumar Mourya</p>
+          </div>
+        </article>
+      </Reveal>
     </div>
   </Section>
 );
@@ -104,6 +130,91 @@ export const Certifications = () => {
   );
 };
 
+export const ExtracurricularActivities = () => {
+  const [selectedActivity, setSelectedActivity] = useState(null);
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedActivity) return undefined;
+
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    closeButtonRef.current?.focus();
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedActivity(null);
+      } else if (event.key === "Tab") {
+        event.preventDefault();
+        closeButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus?.();
+    };
+  }, [selectedActivity]);
+
+  return (
+    <Section id="activities" title="Extracurricular Activities & Sports" sub="Community involvement and co-curricular participation.">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {extracurricularActivities.map((activity, i) => (
+          <Reveal key={activity.title} d={(i % 3) * 0.08}>
+            <button type="button" onClick={() => setSelectedActivity(activity)} aria-label={`View ${activity.title} image`}
+              className="card group h-full w-full overflow-hidden text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold">
+              {activity.image ? (
+                <div className="relative h-40 overflow-hidden border-b border-pu/20">
+                  <img src={activity.image} alt="" loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  <span className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <ZoomIn className="text-gold" aria-hidden="true" />
+                  </span>
+                </div>
+              ) : (
+                <div className="flex h-40 flex-col items-center justify-center gap-2 border-b border-pu/20 bg-gradient-to-br from-pu/10 to-gold/10 p-4 text-center">
+                  <ImagePlus size={30} className="text-gold" aria-hidden="true" />
+                  <span className="text-sm font-semibold text-muted">Add certificate or activity image</span>
+                </div>
+              )}
+              <div className="p-4">
+                <h3 className="font-bold">{activity.title}</h3>
+                <p className="text-sm text-gold">{activity.organization}</p>
+                <p className="mt-1 text-xs text-muted">{activity.description}</p>
+              </div>
+            </button>
+          </Reveal>
+        ))}
+      </div>
+      <AnimatePresence>
+        {selectedActivity && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setSelectedActivity(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm">
+            <motion.div initial={{ scale: 0.94, y: 12 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.94, y: 12 }}
+              onClick={(event) => event.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby="activity-dialog-title"
+              className="relative flex max-h-[calc(100vh-2rem)] w-full max-w-5xl flex-col items-center overflow-y-auto rounded-2xl border border-white/15 bg-card p-4 shadow-2xl sm:p-6">
+              <button ref={closeButtonRef} type="button" onClick={() => setSelectedActivity(null)} aria-label="Close image viewer"
+                className="absolute right-3 top-3 z-10 rounded-full bg-pu p-2 text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold">
+                <X size={20} />
+              </button>
+              <img src={selectedActivity.image} alt={`${selectedActivity.title} certificate or activity image`}
+                className="max-h-[calc(100vh-10rem)] max-w-full rounded-lg object-contain" />
+              <div className="mt-4 max-w-3xl text-center">
+                <h3 id="activity-dialog-title" className="font-bold text-fg">{selectedActivity.title}</h3>
+                <p className="text-sm text-gold">{selectedActivity.organization}</p>
+                <p className="mt-1 text-sm text-muted">{selectedActivity.description}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Section>
+  );
+};
+
 export const Achievements = () => (
   <Section id="achievements" title="My Achievements" sub="Hackathons, competitions and recognitions.">
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -161,10 +272,15 @@ export const Contact = () => {
   };
   const field = (k, label, area) => {
     const P = area ? "textarea" : "input";
+    const placeholder = {
+      name: "Your Name / Organisational Name",
+      email: "Your Email Address / Organisational Email Address",
+      message: "How can I help you",
+    }[k];
     return (
       <label className="block text-sm font-medium">{label}
-        <P rows={area ? 5 : undefined} type={k === "email" ? "email" : "text"} value={f[k]} onChange={(e) => setF({ ...f, [k]: e.target.value })}
-          className="mt-1 w-full rounded-lg border border-pu/40 bg-card px-4 py-2.5 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30" />
+        <P rows={area ? 5 : undefined} type={k === "email" ? "email" : "text"} placeholder={placeholder} value={f[k]} onChange={(e) => setF({ ...f, [k]: e.target.value })}
+          className="mt-1 w-full rounded-lg border border-pu/40 bg-card px-4 py-2.5 text-fg placeholder:text-muted/70 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30" />
         {err[k] && <span className="text-xs text-red-500">{err[k]}</span>}
       </label>
     );
@@ -189,13 +305,22 @@ export const Footer = () => {
     const s = () => setShow(scrollY > 400);
     addEventListener("scroll", s); return () => removeEventListener("scroll", s);
   }, []);
-  const social = [[Linkedin, links.linkedin, "LinkedIn"], [Github, links.github, "GitHub"], [Code2, links.gfg, "GeeksforGeeks"]];
+  const social = [
+    { Icon: Linkedin, href: links.linkedin, label: "LinkedIn", color: "text-[#0A66C2] dark:text-[#70B5F9]" },
+    { Icon: Github, href: links.github, label: "GitHub", color: "text-[#181717] dark:text-[#F0F6FC]" },
+    { Icon: Code2, href: links.gfg, label: "GeeksforGeeks", color: "text-[#2F8D46] dark:text-[#6CCB7A]" },
+    { Icon: MessageCircle, href: links.whatsapp, label: "WhatsApp", color: "text-[#25D366] dark:text-[#4AE889]", external: true },
+    { Icon: Mail, href: links.email, label: "Email", color: "text-[#D93025] dark:text-[#FF6B60]" },
+  ];
   return (
     <footer className="border-t border-pu/20 py-8 text-center">
       <p className="mb-4 text-sm font-semibold text-gold">Designed & Developed with ❤️ by Mohit Kumar Mourya</p>
       <div className="mb-4 flex justify-center gap-4">
-        {social.map(([I, href, l]) => (
-          <a key={l} href={href} target="_blank" rel="noreferrer" aria-label={l} className="rounded-full border border-pu/40 p-3 transition hover:border-gold hover:text-gold"><I size={20} /></a>
+        {social.map(({ Icon, href, label, color, external }) => (
+          <a key={label} href={href} {...(external ? { target: "_blank", rel: "noreferrer" } : {})} aria-label={label}
+            className={`rounded-full border border-pu/40 p-3 transition hover:border-current hover:bg-pu/10 ${color}`}>
+            <Icon size={20} aria-hidden="true" />
+          </a>
         ))}
       </div>
       <p className="text-sm text-muted">© {new Date().getFullYear()} Mohit Kumar Mourya. All rights reserved.</p>

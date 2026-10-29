@@ -14,4 +14,5 @@ export const certifications = [
   c("Copilot", "Microsoft", "microsoft-copilot.png","July 2026"),
   c("Eureka! PitchFest", "GEC Bilaspur", "pitchfest.png","Aug 2026","Ideathon"),
   c("NTPC Electron Quiz", "NTPC", "NTPC Electron Quiz Participation Certificate (1).png","Sep 2026","Quiz"),
+  c("Lenovo Leap", "BharatCares", "lenovo-leap.png","Oct 2026","Hackathon"),
 ];
